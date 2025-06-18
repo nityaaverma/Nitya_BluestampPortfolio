@@ -66,6 +66,7 @@ Challenges
 At first, when I put the battery into the clip at the bottom of the board, the LED lights did not light up, so I had to troubleshoot to see any problems with my soldering. I did not notice any, and also saw that the LED lights lit up for a short second when I was fixing different components. With a bit of help from my instructor, I realized that the LED lights lit up when I lightly pressed the main photoresistor on the the board, the LED lights did light up. This was because the photoresistor was sensitive to the light, and only allowed the LED lights to light up when it didn't sense light. When the resistor was slightly pressed, reistance got reduced and current flowed through the LED lights, making them light up.
 
 Next Steps
+
 My next steps are to record the Starter Project Milestone Video and start working on my main project, the Hexapod.
 
 # Schematics 
