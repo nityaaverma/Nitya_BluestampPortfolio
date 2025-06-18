@@ -1,7 +1,7 @@
 # Hexapod
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
+<!--- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! --->
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
+<!---You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:--->
 ```HTML 
 <!--- This is an HTML comment in Markdown -->
 <!--- Anything between these symbols will not render on the published site -->
@@ -14,7 +14,7 @@ You should comment out all portions of your portfolio that you have not complete
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
 ![Headstone Image](logo.svg)
-  
+
 # Final Milestone
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
@@ -44,7 +44,7 @@ For your second milestone, explain what you've worked on since your previous mil
 # First Milestone
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MTQ2BYpMcPU?si=rvORzKBOlAVMeMWE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
@@ -54,13 +54,19 @@ For your first milestone, describe what your project is and how you plan to buil
 
 # Starter Project Milestone - Weevil Eye
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<!---**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.** --->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MTQ2BYpMcPU?si=rvORzKBOlAVMeMWE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- The Weevil Eye consists of a board connected and soldered to a transistors, four resistors, and 2 LED lights.
-- When the main resistor is slightly pressed, reistance is reduced and current flows through the LED lights and makes them light up.
-- A challenge I faced was making sure the LED lights were oriented correctly since they are polarized. The positive sides had to go together and the negative sides also had to go together.
+Description
+
+My starter project was the Weevil Eye. I chose this project because I wanted to work on my soldering skills. The Weevil Eye consists of a board connected and soldered to a transistors, three resistors, a photoresistor and 2 LED lights, and it is in the shape of a bug with six legs. when a battery is attatched to battery clip on the bottom of the board, the LED lights (the eyes of the bug) light up. I learned a lot through this project, like how solder conducts electricity and the importance of soldering correctly to avoid any mishaps in the current flow. I also had to make sure to correctly orient the polarized LED lights and make sure both the positive sides and btoh the negatives went together.
+
+Challenges 
+
+At first, when I put the battery into the clip at the bottom of the board, the LED lights did not light up, so I had to troubleshoot to see any problems with my soldering. I did not notice any, and also saw that the LED lights lit up for a short second when I was fixing different components. With a bit of help from my instructor, I realized that the LED lights lit up when I lightly pressed the main photoresistor on the the board, the LED lights did light up. This was because the photoresistor was sensitive to the light, and only allowed the LED lights to light up when it didn't sense light. When the resistor was slightly pressed, reistance got reduced and current flowed through the LED lights, making them light up.
+
+Next Steps
+My next steps are to record the Starter Project Milestone Video and start working on my main project, the Hexapod.
 
 # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
