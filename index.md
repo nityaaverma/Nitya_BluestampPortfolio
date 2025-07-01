@@ -38,28 +38,28 @@
 <!--- For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
 - Technical details of what you've accomplished and how they contribute to the final goal
 - What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone ---> 
+- Previous challenges you faced that you over
+- What needs to be completed before your final milestone --->
+
+## Description 
+Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. 
+
+## Challenges 
+At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down rather than holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. 
 
 # First Milestone
 
-<!--- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.** 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rb6JfESJuJA?si=rGa8E70MRsebYPxD&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
 
-<!--- For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project --->
-Description
+## Description
 
-My project is the Hexapod, a six-legged robot which can be controlled by a controller. It consists of a control board connected to 18 servos with black acrylic plates. In my first milestone, I assembled the body and legs of the Hexapod. I first uploaded a default sketch into my control board and connected the control board to the Processing sketch using a USB cable to make sure my batteries were at the correct voltage, around 8 volts, and that my servos were all working properly. I installed the batteries into the control board by connecting screwing in the metal part of a pair of female wires, and turned power on by connecting the female wires with the pair of male wires attatched to the pack of batteries. To test my servos, I had to plug them into pins 22-39 in the back of the control board and make sure all the wires of the servos were placed correctly. I then joined the bottom acrylic plate to the control board, the servos, and the acrylic legs of the robot using screws, nuts, and brass standoffs. This part took me a lot of time because I had to play close attention to the orientation of the servos and legs, and the screws were also really small and kept on slipping from my hands. While screwing in the servos, I had to keep the control board in installation mode (the mode is changed in the Processing sketch) and make sure the board was connected to power.  After successfully connecting the legs to the main acrylic plate, I had to rewire all the servos in the correct pins so that all the servos would be able to move freely later. After correcting the wiring I also used a cable tidy to make the wires as neat as possible. Finally, I attatched the WLAN module, a small chip, to the control board. The WLAN module, similar to Wi-Fi, alllows Hexapod to wirelessly connect and be controlled by the Processing App. 
+My project is the Hexapod, a six-legged robot which can be controlled by a controller. It consists of a control board connected to 18 servos with black acrylic plates. In my first milestone, I assembled the body and legs of the Hexapod. I first uploaded a default example sketch into my control board and connected the control board to the Processing App using a USB cable to make sure my batteries were at the correct voltage, around 8 volts, and that my servos were all working properly. I installed the batteries into the control board by connecting screwing in the metal part of a pair of female wires, and turned power on by connecting the female wires with the pair of male wires attatched to the pack of batteries. To test my servos, I had to plug them into pins 22-39 in the back of the control board and make sure all the wires of the servos were placed correctly. I then joined the bottom acrylic plate to the control board, the servos, and the acrylic legs of the robot using screws, nuts, and brass standoffs. This part took me a lot of time because I had to play close attention to the orientation of the servos and legs, and the screws were also really small and kept on slipping from my hands. While screwing in the servos, I had to keep the control board in installation mode (the mode is changed in the Processing sketch) and make sure the board was connected to power.  After successfully connecting the legs to the main acrylic plate, I had to rewire all the servos in the correct pins so that all the servos would be able to move freely later. After correcting the wiring I also used a cable tidy to make the wires as neat as possible. Finally, I attatched the WLAN module, a small chip, to the control board. The WLAN module, similar to Wi-Fi, alllows Hexapod to wirelessly connect and be controlled by the Processing App. 
 
-Challenges
+## Challenges
 
 I mainly faced challenges while screwing together different parts, because I had to play attention to detail to the orientation of parts and how to screw them. I often had to  unscrew and re-screw parts because of this. I also had trouble uploading the default sketch into the control board and Arduino kept giving me an error, but with some help from instructors I learned to debug errors and realized I was using the wrong board. 
 
-Next Steps 
+## Next Steps 
 
 My next steps are to work on calibrating my robot and building the controller. 
 
@@ -75,19 +75,19 @@ Schematic of Hexapod
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MTQ2BYpMcPU?si=rvORzKBOlAVMeMWE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Description
+## Description
 
 My starter project was the Weevil Eye. I chose this project because I wanted to work on my soldering skills. The Weevil Eye consists of a board connected and soldered to a transistors, three resistors, a photoresistor and 2 LED lights, and it is in the shape of a bug with six legs. when a battery is attatched to battery clip on the bottom of the board, the LED lights (the eyes of the bug) light up. I learned a lot through this project, like how solder conducts electricity and the importance of soldering correctly to avoid any mishaps in the current flow. I also had to make sure to correctly orient the polarized LED lights and make sure both the positive sides and btoh the negatives went together.
 
-Challenges
+## Challenges
 
 At first, when I put the battery into the clip at the bottom of the board, the LED lights did not light up, so I had to troubleshoot to see any problems with my soldering. I did not notice any, and also saw that the LED lights lit up for a short second when I was fixing different components. With a bit of help from my instructor, I realized that the LED lights lit up when I lightly pressed the main photoresistor on the the board, the LED lights did light up. This was because the photoresistor was sensitive to the light, and only allowed the LED lights to light up when it didn't sense light. When the resistor was slightly pressed, reistance got reduced and current flowed through the LED lights, making them light up.
 
-Next Steps
+## Next Steps
 
 My next steps are to record the Starter Project Milestone Video and start working on my main project, the Hexapod.
 
-# Schematics 
+<!--- # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
 # Code
@@ -123,3 +123,4 @@ One of the best parts about Github is that you can view how other people set up 
 - [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
 
 To watch the BSE tutorial on how to create a portfolio, click here.
+--->
