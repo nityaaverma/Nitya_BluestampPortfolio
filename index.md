@@ -42,10 +42,13 @@
 - What needs to be completed before your final milestone --->
 
 ## Description 
-Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. 
+Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. To calibrate my robot, I had to connect it to the processing app to put it into calibration mode, and then use the Processing App to move each leg of the Hexapod to match its position on the calibration graph. Now that I have calibrated the robot, everytime I connect it to power, it will automatically go into its default position. Once I calibrated the Hexapod, I could control its movement through the Processing App. All the code for the Hexapod's movement came from the original example sketch I uploaded into the Hexapod. I can also wirelessly connect the Hexapod to the Processing App, because of the WLAN module, which creates a Wi-Fi I can connect my computer to. Once connected to the Wi-Fi, the Processing App can wirelessly connect to the Hexapod, so I can control its movement and give it basic movement commands.  
 
 ## Challenges 
 At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down rather than holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. 
+
+## Next Steps 
+For my third milestone, I will work on creating the remote controller and controlling the Hexapod through the controller. 
 
 # First Milestone
 
