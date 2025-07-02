@@ -11,11 +11,11 @@
 |:--:|:--:|:--:|:--:|
 | Nitya V. | Lynbrook High School | Mechanical Engineering | Incoming Junior
 
-<!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here] --->(https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
+<!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here] (https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
-<!--- ![Headstone Image](logo.svg) --->
+![Headstone Image](logo.svg) --->
 
-# Final Milestone
+# Third Milestone
 
 <!---**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.** 
 
@@ -27,13 +27,19 @@
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE --->
 
+## Description 
+For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote, by. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. 
+
+## Challenges
+
+
+## Next Steps 
+ 
 
 
 # Second Milestone
 
-<!--- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.** 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f6aHOOFBFAY?si=haOz7Pi0kzS1B6U4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
 
 <!--- For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
 - Technical details of what you've accomplished and how they contribute to the final goal
@@ -84,7 +90,7 @@ My starter project was the Weevil Eye. I chose this project because I wanted to 
 
 ## Challenges
 
-At first, when I put the battery into the clip at the bottom of the board, the LED lights did not light up, so I had to troubleshoot to see any problems with my soldering. I did not notice any, and also saw that the LED lights lit up for a short second when I was fixing different components. With a bit of help from my instructor, I realized that the LED lights lit up when I lightly pressed the main photoresistor on the the board, the LED lights did light up. This was because the photoresistor was sensitive to the light, and only allowed the LED lights to light up when it didn't sense light. When the resistor was slightly pressed, reistance got reduced and current flowed through the LED lights, making them light up.
+At first, when I put the battery into the clip at the bottom of the board, the LED lights did not light up, so I had to troubleshoot to see if there were any problems with my soldering. I did not notice any, and also saw that the LED lights lit up for a short second when I was fixing different components. With a bit of help from my instructor, I realized that the LED lights lit up when I lightly pressed the main photoresistor on the the board, the LED lights did light up. This was because the photoresistor is sensitive to light, and only allows the LED lights to light up when it doesn't sense light. When the resistor was slightly pressed, reistance got reduced and current flowed through the LED lights, making them light up.
 
 ## Next Steps
 
