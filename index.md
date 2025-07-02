@@ -28,14 +28,13 @@
 - What you hope to learn in the future after everything you've learned at BSE --->
 
 ## Description 
-For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote, by. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. 
+For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote. The wireless modules consist of a transmitter, receiver, and antenna and transmits data through radio waves, allowing the remote to communicate with the Hexapod. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. When the joystick is pressed, the Hexapod also switches between sleep mode and active mode. 
 
 ## Challenges
-
+When I first tried uploading the example sketch into the remote, I kept getting an error and the Arduino IDE failed to recognize my board. Initially, I tried to restart the Arduino IDE and my computer, but I kept getting the same error. Eventually, I was able to upload the sketch into my remote without an error, with the help of an instructor who had to change the address of the board in the arduino config files. 
 
 ## Next Steps 
- 
-
+ Next, I will work on my modifications. 
 
 # Second Milestone
 
