@@ -55,6 +55,10 @@ At first, I faced a lot of challenges while calibrating my Hexapod because my ro
 ## Next Steps 
 For my third milestone, I will work on creating the remote controller and controlling the Hexapod through the controller. 
 
+Figure 2 - Calibration Graph
+
+![Calibration Graph](CalibrationGraph_for_V3.pdf)
+
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rb6JfESJuJA?si=rGa8E70MRsebYPxD&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
@@ -72,7 +76,7 @@ I mainly faced challenges while screwing together different parts, because I had
 My next steps are to work on calibrating my robot and building the controller. 
 
 
-Schematic of Hexapod
+Figure 1 - Schematic of Hexapod
 
 ![Schematic of Hexapod](circuit.svg)
 
