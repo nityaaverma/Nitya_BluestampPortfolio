@@ -96,7 +96,7 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 #### Figure - Processing Sketch Calibration Tab
 
-![Processing Sketch Calibration Tab](Screenshot(540).png)
+![Processing Sketch Calibration Tab](calibration_tab.png)
 
 
 #### Figure  - Calibration Graph
@@ -129,8 +129,6 @@ My next steps are to work on calibrating my robot and building the controller.
 
 
 Figure 2 - Schematic of Hexapod
-
-![Schematic of Hexapod](circuit.svg)
 
 
 # Starter Project Milestone - Weevil Eye
