@@ -92,9 +92,15 @@ The purpose of calibrating the Hexapod is to set its default position when power
 }
 ```
 
-Figure 1 - Calibration Graph
+#### Figure - Processing Sketch Calibration Tab
+
+![Processing Sketch Calibration Tab](Screenshot(540).png)
+
+
+#### Figure  - Calibration Graph
 
 This is the graph the legs of the Hexapod are aligned with, for the default position.
+
 ![Calibration Graph](CalibrationGraph_for_V3.pdf)
 
 ## Challenges 
