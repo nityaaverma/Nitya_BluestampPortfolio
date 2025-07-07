@@ -46,18 +46,62 @@ When I first tried uploading the example sketch into the remote, I kept getting 
 - Previous challenges you faced that you over
 - What needs to be completed before your final milestone --->
 
+
 ## Description 
-Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. To calibrate my robot, I had to connect it to the processing app to put it into calibration mode, and then use the Processing App to move each leg of the Hexapod to match its position on the calibration graph. Now that I have calibrated the robot, everytime I connect it to power, it will automatically go into its default position. Once I calibrated the Hexapod, I could control its movement through the Processing App. All the code for the Hexapod's movement came from the original example sketch I uploaded into the Hexapod. I can also wirelessly connect the Hexapod to the Processing App, because of the WLAN module, which creates a Wi-Fi I can connect my computer to. Once connected to the Wi-Fi, the Processing App can wirelessly connect to the Hexapod, so I can control its movement and give it basic movement commands.  
+Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. To calibrate my robot, I had to connect it to the processing app to put it into calibration mode, and then use the Processing App to individually move each leg of the Hexapod to match its position on the calibration graph. Now that I have calibrated the robot, everytime I connect it to power, it will automatically go into its default position. Once I calibrated the Hexapod, I could control its movement through the Processing App. All the code for the Hexapod's movement came from the original example sketch I uploaded into the Hexapod. I can also wirelessly connect the Hexapod to the Processing App, because of the WLAN module, which creates a Wi-Fi I can connect my computer to. Once connected to the Wi-Fi, the Processing App can wirelessly connect to the Hexapod, so I can control its movement and give it basic movement commands.  
 
-## Challenges 
-At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down rather than holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. 
+### How it Works - Calibration 
+The purpose of calibrating the Hexapod is to set its default position when power is turned on. When the calibration is confirmed in the Processing App, the data is stored in the robot. The code below is a snippet of the code from the Processing App library that creates the Processing Sketch that can be used to control the Hexapod when connected. 
 
-## Next Steps 
-For my third milestone, I will work on creating the remote controller and controlling the Hexapod through the controller. 
+```
+ // tab Calibration
+    // move leg
+    case(402):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0);
+    break;
+    case(403):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0);
+    break;
+    case(404):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), dL, 0, 0);
+    break;
+    case(405):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), -dL, 0, 0);
+    break;
+    case(406):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, dL);
+    break;
+    case(407):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, -dL);
+    break;
+    // calibrate
+    case(408):
+    controlRobot.Calibrate();
+    break;
+    case(409):
+    controlRobot.CalibrateState();
+    cp5.getController("confirm").unlock();
+    cp5.getController("confirm").setColorLabel(255);
+    break;
+    case(410):
+    controlRobot.CalibrateVerify();
+    cp5.getController("confirm").lock();
+    cp5.getController("confirm").setColorLabel(160);
+    break;
+  }
+}
+```
 
 Figure 1 - Calibration Graph
 
+This is the graph the legs of the Hexapod are aligned with, for the default position.
 ![Calibration Graph](CalibrationGraph_for_V3.pdf)
+
+## Challenges 
+At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down instead of holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. When correctly screwed on, the servos make a buzzing sound while moved, and cannot be manually moved when power is turned on.  
+
+## Next Steps 
+For my third milestone, I will work on creating the remote controller and controlling the Hexapod through the controller. The remote contoller can wirelessly connect to the Hexapod, so once the controller is made, I will be able to move my Hexapod without connecting it to my computer or the Processing App. 
 
 # First Milestone
 
@@ -79,8 +123,6 @@ My next steps are to work on calibrating my robot and building the controller.
 Figure 2 - Schematic of Hexapod
 
 ![Schematic of Hexapod](circuit.svg)
-
-
 
 
 # Starter Project Milestone - Weevil Eye
