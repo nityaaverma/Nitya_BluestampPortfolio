@@ -17,9 +17,7 @@
 
 # Final Milestone
 
-<!---**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.** 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wRW_JbUXg2o?si=PdZkQUoyxAZ_7aVP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <!--- For your final milestone, explain the outcome of your project. Key details to include are:
 - What you've accomplished since your previous milestone
@@ -28,9 +26,12 @@
 - What you hope to learn in the future after everything you've learned at BSE --->
 
 ## Description 
-For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote. The wireless modules consist of a transmitter, receiver, and antenna and transmits data through radio waves, allowing the remote to communicate with the Hexapod. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. When the joystick is pressed, the Hexapod also switches between sleep mode and active mode.  
+For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. When the joystick is pressed, the Hexapod also switches between sleep mode and active mode. The Hexapod also has a built-in feature that puts it in sleep mode everytime no commands are issued for 10 seconds. 
 
-#### Figure  
+#### Figure  - Schematic of Robot Controller 
+
+### How it Works - Wireless Module 
+The wireless modules consist of a transmitter, receiver, and antenna. The wireless module on the remote transmits data through radio waves, which are received by the wireless module on the Hexapod, allowing the remote to communicate with the Hexapod. 
 
 ## Challenges
 When I first tried uploading the example sketch into the remote, I kept getting an error and the Arduino IDE failed to recognize my board. Initially, I tried to restart the Arduino IDE and my computer, but I kept getting the same error. Eventually, I was able to upload the sketch into my remote without an error, with the help of an instructor who had to change the address of the board in the arduino config files. 
@@ -58,9 +59,9 @@ The purpose of calibrating the Hexapod is to set its default position when power
 ```
  // tab Calibration
     // move leg
-    case(402):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0);
-    break;
+    case(402): //checks if the id value matches 402 
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0); // moves leg 1 mm 
+    break;  //stops running code for this case
     case(403):
     controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0);
     break;
@@ -106,7 +107,7 @@ This is the graph the legs of the Hexapod are aligned with, for the default posi
 ![Calibration Graph](CalibrationGraph_for_V3.pdf)
 
 ## Challenges 
-At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down instead of holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. When correctly screwed on, the servos make a buzzing sound while moved, and cannot be manually moved when power is turned on.  
+At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down instead of holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. When correctly screwed on, the servos make a buzzing sound while moved, and cannot be manually moved when power is turned on.
 
 ## Next Steps 
 For my third milestone, I will work on creating the remote controller and controlling the Hexapod through the controller. The remote controller can wirelessly connect to the Hexapod, so once the controller is made, I will be able to move my Hexapod without connecting it to my computer or the Processing App. 
@@ -118,6 +119,7 @@ For my third milestone, I will work on creating the remote controller and contro
 ## Description
 
 My project is the Hexapod, a six-legged robot which can be controlled by a controller. It consists of a control board connected to 18 servos with black acrylic plates. In my first milestone, I assembled the body and legs of the Hexapod. I first uploaded a default example sketch into my control board and connected the control board to the Processing App using a USB cable to make sure my batteries were at the correct voltage, around 8 volts, and that my servos were all working properly. I installed the batteries into the control board by connecting screwing in the metal part of a pair of female wires, and turned power on by connecting the female wires with the pair of male wires attatched to the pack of batteries. To test my servos, I had to plug them into pins 22-39 in the back of the control board and make sure all the wires of the servos were placed correctly. I then joined the bottom acrylic plate to the control board, the servos, and the acrylic legs of the robot using screws, nuts, and brass standoffs. This part took me a lot of time because I had to play close attention to the orientation of the servos and legs, and the screws were also really small and kept on slipping from my hands. While screwing in the servos, I had to keep the control board in installation mode (the mode is changed in the Processing sketch) and make sure the board was connected to power.  After successfully connecting the legs to the main acrylic plate, I had to rewire all the servos in the correct pins so that all the servos would be able to move freely later. After correcting the wiring I also used a cable tidy to make the wires as neat as possible. Finally, I attatched the WLAN module, a small chip, to the control board. The WLAN module, similar to Wi-Fi, alllows Hexapod to wirelessly connect and be controlled by the Processing App. 
+
 
 ## Challenges
 
@@ -146,6 +148,7 @@ At first, when I put the battery into the clip at the bottom of the board, the L
 ## Next Steps
 
 My next steps are to start working on my main project, the Hexapod.
+
 
 <!--- # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
