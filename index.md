@@ -1,4 +1,4 @@
-# Hexapod
+ f# Hexapod
 <!--- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! --->
 
 <!---You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:--->
@@ -28,7 +28,8 @@
 ## Description 
 For my third milestone, I worked on building the remote controller for the Hexapod. The controller consists of a an acrylic plate screwed to a control board which is connected to a smart car remote shield, and a 9 volt battery holder. The remote connects to the Hexapod through two wireless modules, one placed on the Hexapod and the other placed on the remote. Once I uploaded the example sketch containing the code for the remote into the remote, and turned on power, the wireless modules allowed the Hexapod to connect to the remote. The connection between the remote and Hexapod can be verified by checking the LED3 light, which turns on when the remote and the Hexapod are connected. Once connected, you can use the joystick to control the movement of the Hexapod. There are three switches and toggles, each of which can be used for moving the Hexapod in different ways, like moving straight, turning, and rotating in place. There are also 2 knobs, which can be used to change the Hexapod's height, or rotate the robot in place. When the joystick is pressed, the Hexapod also switches between sleep mode and active mode. The Hexapod also has a built-in feature that puts it in sleep mode everytime no commands are issued for 10 seconds. 
 
-#### Figure  - Schematic of Robot Controller 
+<!--- #### Figure  - Schematic of Robot Controller 
+--->
 
 ### How it Works - Wireless Module 
 The wireless modules consist of a transmitter, receiver, and antenna. The wireless module on the remote transmits data through radio waves, which are received by the wireless module on the Hexapod, allowing the remote to communicate with the Hexapod. 
@@ -60,22 +61,22 @@ The purpose of calibrating the Hexapod is to set its default position when power
  // tab Calibration
     // move leg
     case(402): //checks if the id value matches 402 
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0); // moves leg 1 mm 
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0); // moves leg 1 mm in the positive  y dimension 
     break;  //stops running code for this case
     case(403):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0);
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0); //moves leg 1 mm in the negative y dimension 
     break;
     case(404):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), dL, 0, 0);
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), dL, 0, 0);  //moves leg 1 mm in the positive x dimension
     break;
     case(405):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), -dL, 0, 0);
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), -dL, 0, 0); //moves leg 1mm in the negative x dimension
     break;
     case(406):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, dL);
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, dL); //moves leg 1 mm in the positive z dimension
     break;
     case(407):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, -dL);
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, -dL); //moves leg 1 mm in the negative z dimension
     break;
     // calibrate
     case(408):
@@ -130,7 +131,7 @@ I mainly faced challenges while screwing together different parts, because I had
 My next steps are to work on calibrating my robot and building the controller. 
 
 
-Figure 2 - Schematic of Hexapod
+<!--- Figure 2 - Schematic of Hexapod --->
 
 
 # Starter Project Milestone - Weevil Eye
