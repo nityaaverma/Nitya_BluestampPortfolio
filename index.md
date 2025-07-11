@@ -131,7 +131,8 @@ I mainly faced challenges while screwing together different parts, because I had
 My next steps are to work on calibrating my robot and building the controller. 
 
 
-<!--- Figure 2 - Schematic of Hexapod --->
+ Figure 2 - Schematic of Hexapod 
+ ![schematic of control board](board.svg)
 
 
 # Starter Project Milestone - Weevil Eye
