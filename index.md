@@ -132,7 +132,7 @@ My next steps are to work on calibrating my robot and building the controller.
 
 
  Figure 2 - Schematic of Hexapod 
- ![schematic of control board](circuit_image(1).svg)
+ ![schematic of control board](circuit_image.svg)
 
 
 # Starter Project Milestone - Weevil Eye
