@@ -33,7 +33,7 @@ The wireless modules consist of a transmitter, receiver, and antenna. The wirele
 When I first tried uploading the example sketch into the remote, I kept getting an error and the Arduino IDE failed to recognize my board. Initially, I tried to restart the Arduino IDE and my computer, but I kept getting the same error. Eventually, I was able to upload the sketch into my remote without an error, with the help of an instructor who had to change the address of the board in the arduino config files. 
 
 ## Next Steps 
- Next, I will work on my modifications. 
+ Next, I will work on my modifications. My first modification will be to add ultrasonic sensors to the front and back of my Hexapod so that it can move by itself and avoid obstacles by detecting them with the ultrasonic distance sensors. 
 
 # Second Milestone
 
