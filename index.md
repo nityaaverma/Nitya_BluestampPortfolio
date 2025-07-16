@@ -12,6 +12,10 @@
 # Modification Milestone 
 
 ## Description
+For my first modification, I added ultrasonic sensors to my Hexapod, so that it could walk by itself and navigate through obstacles in front of it. I added two ultrasonic sensors to the front and back of my Hexapod. When the Hexapod senses that the distance to an object from the front of it is less than a threshold distance and the distane to an object from the back of it is greater than the threshold distance, it moves forward. When it senses the opposite, it moves backward. When both the front and back are too close to an object, the Hexapod turns right until it senses an opening to move in either the front or back direction. If it moves 180 degrees and neither the front nor the back have an opening, the Hexapod goes into sleep mode until it senses it has space to move. When both the back and the front is clear, the Hexapod moves forward. 
+
+To mount the sensors, I used CAD to make a small box with two holes, for the big transmitter and reciever of ultrasonic waves. 
+Model 1: 
 
 
 # Final Milestone
@@ -153,6 +157,11 @@ At first, when I put the battery into the clip at the bottom of the board, the L
 
 My next steps are to start working on my main project, the Hexapod.
 
+# Code 
+
+Code for Ultrasonic Sensors
+```
+```
 
 <!--- # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
