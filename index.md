@@ -176,6 +176,182 @@ My next steps are to start working on my main project, the Hexapod.
 
 Code for Ultrasonic Sensors
 ```
+#include<FNHR.h>
+
+
+const int trigPin = 3; //pin of trig pin for the ultrasonic sensor on the back 
+const int echoPin = 2; //pin of echo pin for the ultrasonic sensor on the back
+const int echoPin2 = 15; //pin of trig pin for the ultrasonic sensor on the front
+const int trigPin2 = 14; //pin of echo pin for the ultrasonic sensor on the front
+
+FNHR robot; //initializes robot 
+float degree = 0;  
+float durationBack, distanceBack, durationFront, distanceFront;  //initializes duration and distance variables for front and back
+unsigned long time = 0; 
+
+void setup() {
+  robot.Start();
+  pinMode(trigPin, OUTPUT);  
+	pinMode(echoPin, INPUT); 
+  pinMode(trigPin2, OUTPUT); 
+  pinMode(echoPin2, INPUT); 
+	Serial.begin(9600); 
+
+}
+
+void loop() {
+
+
+  // sends output signal from the trig pin in the back for 10 seconds, every 2 seconds 
+  digitalWrite(trigPin, LOW);  
+	delayMicroseconds(2);  
+	digitalWrite(trigPin, HIGH);  
+	delayMicroseconds(10);  
+	digitalWrite(trigPin, LOW);  
+
+  //caluclates distance to object from back 
+  durationFront = pulseIn(echoPin, HIGH); //uses pulseIn function to measure how long the echo pin was in the high state - how long the signal took to reach the echo pin 
+  if (durationFront != 0.00) { 
+    distanceFront = (durationFront*.0343)/2; //uses distance = speed x time formula to calculate distance to object, 0.343 is the speed of sound in centimeters per microsecond
+  }
+
+  //sends output from the trig pin in the front
+  digitalWrite(trigPin2, LOW);  
+	delayMicroseconds(2);  
+	digitalWrite(trigPin2, HIGH);  
+	delayMicroseconds(10);  
+	digitalWrite(trigPin2, LOW);  
+
+  //calculates time taken for the ultrasonic wave to hit an object and come back 
+  durationBack = pulseIn(echoPin2, HIGH);  
+
+  if (durationBack != 0.00) { 
+  distanceBack = (durationBack*.0343)/2;  //calculates distance to object in the front
+  }
+
+	Serial.print(distanceFront);  
+  Serial.print(" ");
+  Serial.println(distanceBack);     // prints the distance between the object and the sensor in the front and back in the serial monitor
+  float threshold = 20;     // initializes the threshold distance which the sensor must maintain from any object
+
+
+  if (distanceFront < threshold && distanceBack < threshold) { //makes the Hexapod turn right until it finds a point where the distance between an object and the sensor is over the threshold
+    while (distanceFront < threshold && distanceBack < threshold) { 
+      robot.TurnRight();  
+      delay(1000);
+      degree = degree + 6; 
+      Serial.print("At ");
+      Serial.println(degree);
+      if(degree == 180) {   //if the Hexapod turns 180 degrees and doesn't sense any opening, it goes into sleep mode until it senses a distance over the threshold
+        while (distanceFront < threshold && distanceBack < threshold) {
+          robot.SleepMode();
+
+          digitalWrite(trigPin, LOW);  
+          delayMicroseconds(2);  
+          digitalWrite(trigPin, HIGH);  
+          delayMicroseconds(10);  
+          digitalWrite(trigPin, LOW);  
+          durationFront = pulseIn(echoPin, HIGH); 
+           if (durationFront != 0.00) { 
+            distanceFront = (durationFront*.0343)/2; 
+          }
+          digitalWrite(trigPin2, LOW);  
+          delayMicroseconds(2);  
+          digitalWrite(trigPin2, HIGH);  
+          delayMicroseconds(10);  
+          digitalWrite(trigPin2, LOW); 
+          durationBack = pulseIn(echoPin2, HIGH); 
+          if (durationBack != 0.00) { 
+            distanceBack = (durationBack*.0343)/2; 
+          }
+          Serial.print(distanceFront);  
+          Serial.print(" ");
+          Serial.println(distanceBack);
+        }
+      }
+      
+      digitalWrite(trigPin, LOW);  
+	    delayMicroseconds(2);  
+	    digitalWrite(trigPin, HIGH);  
+	    delayMicroseconds(10);  
+	    digitalWrite(trigPin, LOW);  
+      durationFront = pulseIn(echoPin, HIGH); 
+      if (durationFront != 0.00) { 
+        distanceFront = (durationFront*.0343)/2; 
+      }
+      digitalWrite(trigPin2, LOW);  
+      delayMicroseconds(2);  
+      digitalWrite(trigPin2, HIGH);  
+      delayMicroseconds(10);  
+      digitalWrite(trigPin2, LOW); 
+      durationBack = pulseIn(echoPin2, HIGH); 
+      if (durationBack != 0.00) { 
+        distanceBack = (durationBack*.0343)/2; 
+      }
+	    Serial.print(distanceFront);  
+      Serial.print(" ");
+      Serial.println(distanceBack);
+      }
+    
+    degree = 0;  
+  }
+
+  if (distanceBack < threshold && distanceFront >= threshold) {
+    Serial.print("object too close from back "); 
+    if (millis() - time > 2500) {
+      Serial.println(""); 
+      robot.CrawlForward(); 
+      time = millis();
+    } 
+    else { 
+      Serial.println("but too much movement ");
+    }
+  }
+  
+  if (distanceBack >= threshold && distanceFront < threshold) {
+    Serial.print("object too close from front "); 
+    if (millis() - time > 2500) { 
+      Serial.println(""); 
+      robot.CrawlBackward();
+      time = millis();
+    } 
+    else { 
+      Serial.println("but too much movement");
+    }
+  }
+
+  while (distanceBack >= threshold && distanceFront >= threshold) { 
+    if (millis() - time > 2500) { 
+      robot.CrawlForward();
+      time = millis();
+    } 
+    else { 
+      Serial.println("too much movement");
+    }
+
+    digitalWrite(trigPin, LOW);  
+	  delayMicroseconds(2);  
+	  digitalWrite(trigPin, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(trigPin, LOW);  
+    durationFront = pulseIn(echoPin, HIGH); 
+    if (durationFront != 0.00) { 
+      distanceFront = (durationFront*.0343)/2; 
+    }
+    digitalWrite(trigPin2, LOW);  
+    delayMicroseconds(2);  
+    digitalWrite(trigPin2, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(trigPin2, LOW); 
+    durationBack = pulseIn(echoPin2, HIGH); 
+    if (durationBack != 0.00) { 
+      distanceBack = (durationBack*.0343)/2; 
+    }
+	  Serial.print(distanceFront);  
+    Serial.print(" ");
+    Serial.println(distanceBack);
+  }
+}
 ```
 
 <!--- # Schematics 
