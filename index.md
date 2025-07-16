@@ -12,11 +12,26 @@
 # Modification Milestone 
 
 ## Description
-For my first modification, I added ultrasonic sensors to my Hexapod, so that it could walk by itself and navigate through obstacles in front of it. I added two ultrasonic sensors to the front and back of my Hexapod. When the Hexapod senses that the distance to an object from the front of it is less than a threshold distance and the distane to an object from the back of it is greater than the threshold distance, it moves forward. When it senses the opposite, it moves backward. When both the front and back are too close to an object, the Hexapod turns right until it senses an opening to move in either the front or back direction. If it moves 180 degrees and neither the front nor the back have an opening, the Hexapod goes into sleep mode until it senses it has space to move. When both the back and the front is clear, the Hexapod moves forward. 
+For my first modification, I added ultrasonic sensors to my Hexapod, so that it could walk by itself and navigate through obstacles in front of it. I added two ultrasonic sensors to the front and back of my Hexapod. When the Hexapod senses that the distance to an object from the front of it is less than a threshold distance and the distane to an object from the back of it is greater than the threshold distance, it moves forward. When it senses the opposite, it moves backward. When both the front and back are too close to an object, the Hexapod turns right until it senses an opening to move in either the front or back direction. If it moves 180 degrees and neither the front nor the back have an opening, the Hexapod goes into sleep mode until it senses it has space to move. When both the back and the front is clear, the Hexapod moves forward. This is all written in my code. 
+
+### How it Works - HC-SR04 Ultrasonic Sensor
+
+![sensor](sensor.jpg)
+
+Ultrasonic sensors consist of a trasnmitter, a receiver, and a transducer. It has four pins, VCC, GND, Trig, and Echo. The transmitter on the ultrasonic sensor transmits ultrasonic waves that hit the nearest object and bounce back. When a short, high pulse is sent to the trig pin, the sensor's trasmitter sends out ultrasonic waves, that hit the nearest object and bounce back to the sensor's receiver. When the waves hit the sensor's receiver, the echo pin its' pulse changes from high to low. By using the pulseIn function, we can calculate how long the echo pin's pulse was high. By using the formula distance = speed x time, we can determine the distance from the object by inputing the time the echo pin's pulse was high and the speed of sound (ultrasonic waves are sound waves). This is distance to the object and back, so finally, we divide this distance by 2. 
+
 
 To mount the sensors, I used CAD to make a small box with two holes, for the big transmitter and reciever of ultrasonic waves. 
-Model 1: 
+Figure - Ultrasonic Sensor Case Version 1: 
 
+![ver1](ver1.png)
+
+## Challenges
+After my first model of the case was printed, I made some changes to the design since the slot at the bottom wasn't enought to fit the case onto the Hexapod and also, the ultrasonic sensors weren't fitting inside the holes I made in the case. To fix this problem, I removed the back of the case, so it would be easier to push the sensor into the holes and I increased the diameter of the circles by 1.5 milimeters. For the slot, I increased its depth by 5 milimeters, so it could fit onto the Hexapod with more stability. 
+
+Figure - Ultrasonic Sensor Case Version 2: 
+
+![ver2](ver2.png)
 
 # Final Milestone
 
