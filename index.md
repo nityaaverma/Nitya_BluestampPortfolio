@@ -1,4 +1,4 @@
- f# Hexapod
+Hexapod
 <!--- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! --->
 
 
@@ -33,6 +33,8 @@ Figure - Ultrasonic Sensor Case Version 2:
 
 ![ver2](ver2.png)
 
+I also faced challenges while coding the ultrasonic sensors. At first, a lot of the ultrasonic sensor readings would randomly print 0.00, and the speed of the readings also arbitrarily changed to really fast or really slow. This messed with the Hexapod's movement, because sometimes it would move really fast, or just stop moving. With the help of an instructor, I tried many different fixes for this like making a counter for the number of commands sent to the Hexapod and only executing them if they were under a threshold, trying to average every 10 values measured by the ultrasonic sensors, only accepting distances that were not equal to 0, and only lettting the Hexapod accept the command if the time since the last command is more than 2.5 seconds. Eventually, setting the time constraint and only accepting distances not equal to 0 worked, and the Hexapod was able to move consistently and accurately. 
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wRW_JbUXg2o?si=PdZkQUoyxAZ_7aVP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -56,7 +58,9 @@ For my third milestone, I worked on building the remote controller for the Hexap
 The wireless modules allow wireless communication between the control board in the Hexapod and the control board in the remote controller. The wireless module contains a tranceiver, which works as both a transmitter and a receiver, and an antenna, which transmits and receives radio waves. The wireless module uses an SPI interface to create a connection between the module and their microcontroller baords. There are 6 SPI pins: the Master Out Slave In (MOSI) pin, the Master In Slave Out (MISO) pin, the serial clock pin (SCK), the chip enable (CE) pin, the chip select not (CSN) pin, and the IRQ pin. The MOSI pin transmits data from the master, the board, to a slave, which is the module in this case. The MISO pin transmits data from the slave, the module, to the master, the board. The SCK pin helps coordinate the timing of the data transfer, and maintains a steady frequency in the clock signal. The CE pin is responsible for activating and deactiving the chip (module). This is important when controlling multiple chips on a board and choosing which chip is communicating with the board, and is also useful in reducing power consumption when a chip doesn't need to communicate with the board. The CSN pin is used to turn the communication with the board on and off. The IRQ pin indicates when data has been sent or recieved, triggering the interrupt on the microcontroller. The other two pins are GND - ground, and VCC (3V) - power. 
 
 ## Challenges
-When I first tried uploading the example sketch into the remote, I kept getting an error and the Arduino IDE failed to recognize my board. Initially, I tried to restart the Arduino IDE and my computer, but I kept getting the same error. Eventually, I was able to upload the sketch into my remote without an error, with the help of an instructor who had to change the address of the board in the arduino config files. 
+When I first tried uploading the example sketch into the remote, I kept getting an error and the Arduino IDE failed to recognize my board. Initially, I tried to restart the Arduino IDE and my computer, but I kept getting the same error. Eventually, I was able to upload the sketch into my remote without an error, with the help of an instructor, by changing the address of the board in the arduino config files. 
+
+![cofig files](config_files.png)
 
 ## Next Steps 
  Next, I will work on my modifications. My first modification will be to add ultrasonic sensors to the front and back of my Hexapod so that it can move by itself and avoid obstacles by detecting them with the ultrasonic distance sensors. 
@@ -173,6 +177,48 @@ At first, when I put the battery into the clip at the bottom of the board, the L
 My next steps are to start working on my main project, the Hexapod.
 
 # Code 
+Default Robot Code
+```
+#ifndef ARDUINO_AVR_MEGA2560
+#error Wrong board. Please choose "Arduino/Genuino Mega or Mega 2560"
+#endif
+
+// Include FNHR (Freenove Hexapod Robot) library
+#include <FNHR.h>
+
+FNHR robot;
+
+void setup() {
+  // Start Freenove Hexapod Robot with default function
+  robot.Start(true);
+}
+
+void loop() {
+  // Update Freenove Hexapod Robot
+  robot.Update();
+}
+```
+Default Remote Code 
+```
+#ifndef ARDUINO_AVR_UNO
+#error Wrong board. Please choose "Arduino/Genuino Uno"
+#endif
+
+// Include FNHR (Freenove Hexapod Robot) library
+#include <FNHR.h>
+
+FNHRRemote remote;
+
+void setup() {
+  // Start remote
+  remote.Start();
+}
+
+void loop() {
+  // Update remote
+  remote.Update();
+}
+```
 
 Code for Ultrasonic Sensors
 ```
