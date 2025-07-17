@@ -130,7 +130,7 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 This is the graph the legs of the Hexapod are aligned with, for the default position.
 
-![Calibration Graph](CalibrationGraph_for_V3.pdf)
+![Calibration Graph](calibration_graph.png)
 
 ## Challenges 
 At first, I faced a lot of challenges while calibrating my Hexapod because my robot struggled to hold its position and sometimes would just stop moving. I then realized I had screwed on the white disks that held the servos in place backwards. Because of the lack of support, holding the part of the servos that acted as the hinges for the legs, the legs of my Hexapod kept flopping down instead of holding their position. When I fixed the placement of the white disks and screwed everything back on correctly, the servos were able to hold their position and I could easily calibrate the Hexapod. When correctly screwed on, the servos make a buzzing sound while moved, and cannot be manually moved when power is turned on. 
