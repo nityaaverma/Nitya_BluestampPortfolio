@@ -14,6 +14,8 @@ Hexapod
 ## Description
 For my first modification, I added ultrasonic sensors to my Hexapod, so that it could walk by itself and navigate through obstacles in front of it. I added two ultrasonic sensors to the front and back of my Hexapod. When the Hexapod senses that the distance to an object from the front of it is less than a threshold distance and the distane to an object from the back of it is greater than the threshold distance, it moves forward. When it senses the opposite, it moves backward. When both the front and back are too close to an object, the Hexapod turns right until it senses an opening to move in either the front or back direction. If it moves 180 degrees and neither the front nor the back have an opening, the Hexapod goes into sleep mode until it senses it has space to move. When both the back and the front is clear, the Hexapod moves forward. This is all written in my code. 
 
+Next, I worked on integrating the code for the robot's movement due to ultrasonic sensors with the default code for the robot. This was a lot harder than I expected, because the code of the ultrasonic sensors wouldn't run alongside the default robot code and the ports used for the ultrasonic sensors could not be programmed in the default robot code. So, I had to edit the FNHR library's code and add the code for the ultrasonic sensors into there. In the libary code, whenever the Joystick is pressed down, the robot switches between active mode and sleep mode. I modified this method so that instead of switching modes, it would use the ultrasonic sensor code and go into autopilot mode. After this, I had to make a few more modifications to the code - like replacing the names of the trig and echo pins with their numbers, since I couldn't find any place in the library code for the setup. I also replaced the functions I used for the robot's movement within the ultrasonic sensor code (like CrawlForward, CrawlBackward, TurnRight, and SleepMode) with their actual definitions, because I kept getting a compilation error that these methods weren't defined. I also wrote in the pin modes in the method itself. 
+
 ### How it Works - HC-SR04 Ultrasonic Sensor
 
 ![sensor](sensorr.jpg)
@@ -34,6 +36,8 @@ Figure - Ultrasonic Sensor Case Version 2:
 ![ver2](ver2.png)
 
 I also faced challenges while coding the ultrasonic sensors. At first, a lot of the ultrasonic sensor readings would randomly print 0.00, and the speed of the readings also arbitrarily changed to really fast or really slow. This messed with the Hexapod's movement, because sometimes it would move really fast, or just stop moving. With the help of an instructor, I tried many different fixes for this like making a counter for the number of commands sent to the Hexapod and only executing them if they were under a threshold, trying to average every 10 values measured by the ultrasonic sensors, only accepting distances that were not equal to 0, and only lettting the Hexapod accept the command if the time since the last command is more than 2.5 seconds. Eventually, setting the time constraint and only accepting distances not equal to 0 worked, and the Hexapod was able to move consistently and accurately. 
+
+While integrating the code of the ultrasonic sensors to the library, to make sure the changes I made to the libary were saved, I had to move the default robot sketch into a folder with the libary source code files and update the path to the libary in the sketch. However, when I did this I started getting compilation errors about there being stray characters in the source code files that aren't recognized by the compilers. The sequence of the characters for each file was 357\273\277, and apparently, this shows that there is a UTF-8 encoding with the presence of BOMs (Byte-Order-Marks), which is unsupported by the compiler in the Arduino IDE. To fix this, I had to go through each file and change the file encoding to just UTF-8, without the BOM and this fixed the encoding error. 
 
 # Final Milestone
 
@@ -177,28 +181,220 @@ At first, when I put the battery into the clip at the bottom of the board, the L
 My next steps are to start working on my main project, the Hexapod.
 
 # Code 
-Default Robot Code
+## Integration of Default Robot Code and Ultrasonic Sensor Code 
+
+### Modifications to Library: 
+
+Here, I changed the definition of the SwitchMode method in the FNHRBasic.cpp file. 
+```
+void RobotAction::SwitchMode()
+{
+
+  pinMode(14, OUTPUT);  
+  pinMode(15, INPUT); 
+  pinMode(3, OUTPUT); 
+  pinMode(2, INPUT);
+  float degree = 0;  
+  float durationBack, distanceBack, durationFront, distanceFront;  //initializes duration and distance variables for front and back
+  unsigned long time = 0;
+  digitalWrite(14, LOW);  
+	delayMicroseconds(2);  
+	digitalWrite(14, HIGH);  
+	delayMicroseconds(10);  
+	digitalWrite(14, LOW);  
+
+  //caluclates distance to object from back 
+  durationFront = pulseIn(15, HIGH); 
+  if (durationFront != 0.00) { 
+    distanceFront = (durationFront*.0343)/2; 
+  }
+
+  //sends output from the trig pin in the front
+  digitalWrite(3, LOW);  
+	delayMicroseconds(2);  
+	digitalWrite(3, HIGH);  
+	delayMicroseconds(10);  
+	digitalWrite(3, LOW);  
+
+  //calculates time taken for the ultrasonic wave to hit an object and come back 
+  durationBack = pulseIn(2, HIGH);  
+
+  if (durationBack != 0.00) { 
+  distanceBack = (durationBack*.0343)/2;  //calculates distance to object in the front
+  }
+
+  Serial.print(distanceFront);  
+  Serial.print(" ");
+  Serial.println(distanceBack);     // prints the distance between the object and the sensor in the front and back in the serial monitor
+  float threshold = 20;     // initializes the threshold distance which the sensor must maintain from any object
+
+
+  if (distanceFront < threshold && distanceBack < threshold) { //makes the Hexapod turn right until it finds a point where the distance between an object and the sensor is over the threshold
+    while (distanceFront < threshold && distanceBack < threshold) { 
+      //robot.TurnRight(); 
+      Crawl(0, 0, turnAngle); 
+
+      delay(1000);
+      degree = degree + 6; 
+      Serial.print("At ");
+      Serial.println(degree);
+      if(degree == 180) {   //if the Hexapod turns 180 degrees and doesn't sense any opening, it goes into sleep mode until it senses a distance over the threshold
+        while (distanceFront < threshold && distanceBack < threshold) {
+          ActionState();
+            if (legsState != LegsState::CrawlState)
+          InitialState();
+          if (mode == Mode::Sleep)
+            return;
+
+          LegsMoveToRelatively(Point(0, 0, bodyLift), bodyLiftSpeed);
+
+          legsState = LegsState::CrawlState;
+          mode = Mode::Sleep;
+          //robot.SleepMode();
+
+          digitalWrite(14, LOW);  
+          delayMicroseconds(2);  
+          digitalWrite(14, HIGH);  
+          delayMicroseconds(10);  
+          digitalWrite(14, LOW);  
+          durationFront = pulseIn(15, HIGH); 
+           if (durationFront != 0.00) { 
+            distanceFront = (durationFront*.0343)/2; 
+          }
+          digitalWrite(3, LOW);  
+          delayMicroseconds(2);  
+          digitalWrite(3, HIGH);  
+          delayMicroseconds(10);  
+          digitalWrite(3, LOW); 
+          durationBack = pulseIn(2, HIGH); 
+          if (durationBack != 0.00) { 
+            distanceBack = (durationBack*.0343)/2; 
+          }
+          Serial.print(distanceFront);  
+          Serial.print(" ");
+          Serial.println(distanceBack);
+        }
+      }
+      
+      digitalWrite(14, LOW);  
+	    delayMicroseconds(2);  
+	    digitalWrite(14, HIGH);  
+	    delayMicroseconds(10);  
+	    digitalWrite(14, LOW);  
+      durationFront = pulseIn(15, HIGH); 
+      if (durationFront != 0.00) { 
+        distanceFront = (durationFront*.0343)/2; 
+      }
+      digitalWrite(3, LOW);  
+      delayMicroseconds(2);  
+      digitalWrite(3, HIGH);  
+      delayMicroseconds(10);  
+      digitalWrite(3, LOW); 
+      durationBack = pulseIn(2, HIGH); 
+      if (durationBack != 0.00) { 
+        distanceBack = (durationBack*.0343)/2; 
+      }
+	    Serial.print(distanceFront);  
+      Serial.print(" ");
+      Serial.println(distanceBack);
+      }
+    
+    degree = 0;  
+  }
+
+  if (distanceBack < threshold && distanceFront >= threshold) {
+    Serial.print("object too close from back "); 
+    if (millis() - time > 2500) {
+      Serial.println(""); 
+      //robot.CrawlForward();
+      Crawl(0, crawlLength, 0); 
+      delay(1000);
+      time = millis();
+    } 
+    else { 
+      Serial.println("but too much movement ");
+    }
+  }
+  
+  if (distanceBack >= threshold && distanceFront < threshold) {
+    Serial.print("object too close from front "); 
+    if (millis() - time > 2500) { 
+      Serial.println(""); 
+      //robot.CrawlBackward();
+      Crawl(0, -crawlLength, 0);
+      delay(1000);
+      time = millis();
+    } 
+    else { 
+      Serial.println("but too much movement");
+    }
+  }
+
+  while (distanceBack >= threshold && distanceFront >= threshold) { 
+    if (millis() - time > 2500) { 
+      //robot.CrawlForward();
+      Crawl(0, crawlLength, 0);
+      delay(1000);
+      time = millis();
+    } 
+    else { 
+      Serial.println("too much movement");
+    }
+
+    digitalWrite(14, LOW);  
+	  delayMicroseconds(2);  
+	  digitalWrite(14, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(14, LOW);  
+    durationFront = pulseIn(15, HIGH); 
+    if (durationFront != 0.00) { 
+      distanceFront = (durationFront*.0343)/2; 
+    }
+    digitalWrite(3, LOW);  
+    delayMicroseconds(2);  
+    digitalWrite(3, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(3, LOW); 
+    durationBack = pulseIn(2, HIGH); 
+    if (durationBack != 0.00) { 
+      distanceBack = (durationBack*.0343)/2; 
+    }
+	  Serial.print(distanceFront);  
+    Serial.print(" ");
+    Serial.println(distanceBack);
+  }
+}
+```
+
+### Default Robot Code
+
+The only change I made here was the library included. I had to make sure this sketch was in the folder as the modified libary source code files for the changes to actually go through. I had to copy the path of the FNHR source file and replace the previous library name with it. 
+
 ```
 #ifndef ARDUINO_AVR_MEGA2560
 #error Wrong board. Please choose "Arduino/Genuino Mega or Mega 2560"
 #endif
 
 // Include FNHR (Freenove Hexapod Robot) library
-#include <FNHR.h>
+#include "src\FNHR.h"
 
 FNHR robot;
 
 void setup() {
   // Start Freenove Hexapod Robot with default function
   robot.Start(true);
+  Serial.begin(9600); 
+
 }
 
 void loop() {
-  // Update Freenove Hexapod Robot
   robot.Update();
 }
+
 ```
-Default Remote Code 
+
+
+## Default Remote Code 
 ```
 #ifndef ARDUINO_AVR_UNO
 #error Wrong board. Please choose "Arduino/Genuino Uno"
@@ -219,8 +415,29 @@ void loop() {
   remote.Update();
 }
 ```
+## Default Robot Code (separately)
+```
+#ifndef ARDUINO_AVR_MEGA2560
+#error Wrong board. Please choose "Arduino/Genuino Mega or Mega 2560"
+#endif
 
-Code for Ultrasonic Sensors
+// Include FNHR (Freenove Hexapod Robot) library
+#include <FNHR.h>
+
+FNHR robot;
+
+void setup() {
+  // Start Freenove Hexapod Robot with default function
+  robot.Start(true);
+}
+
+void loop() {
+  // Update Freenove Hexapod Robot
+  robot.Update();
+}
+```
+
+## Code for Ultrasonic Sensors (separately)
 ```
 #include<FNHR.h>
 
