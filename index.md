@@ -6,9 +6,7 @@ Hexapod
 |:--:|:--:|:--:|:--:|
 | Nitya V. | Lynbrook High School | Mechanical Engineering | Incoming Junior
 
-<!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here] (https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
-![Headstone Image](logo.svg) --->
 # Modification Milestone 
 
 ## Description
@@ -18,20 +16,23 @@ Next, I worked on integrating the code for the robot's movement due to ultrasoni
 
 ### How it Works - HC-SR04 Ultrasonic Sensor
 
+#### Figure 7 - Ultrasonic Sensor
 ![sensor](sensorr.jpg)
 
 Ultrasonic sensors consist of a trasnmitter, a receiver, and a transducer. It has four pins, VCC, GND, Trig, and Echo. The transmitter on the ultrasonic sensor transmits ultrasonic waves that hit the nearest object and bounce back. When a short, high pulse is sent to the trig pin, the sensor's trasmitter sends out ultrasonic waves, that hit the nearest object and bounce back to the sensor's receiver. When the waves hit the sensor's receiver, the echo pin its' pulse changes from high to low. By using the pulseIn function, we can calculate how long the echo pin's pulse was high. By using the formula distance = speed x time, we can determine the distance from the object by inputing the time the echo pin's pulse was high and the speed of sound (ultrasonic waves are sound waves). This is distance to the object and back, so finally, we divide this distance by 2. 
 
 
 To mount the sensors, I used CAD to make a small box with two holes, for the big transmitter and reciever of ultrasonic waves. 
-Figure - Ultrasonic Sensor Case Version 1: 
+
+
+#### Figure 6 - Ultrasonic Sensor Case Version 1: 
 
 ![ver1](ver1.png)
 
 ## Challenges
 After my first model of the case was printed, I made some changes to the design since the slot at the bottom wasn't enought to fit the case onto the Hexapod and also, the ultrasonic sensors weren't fitting inside the holes I made in the case. To fix this problem, I removed the back of the case, so it would be easier to push the sensor into the holes and I increased the diameter of the circles by 1.5 milimeters. For the slot, I increased its depth by 5 milimeters, so it could fit onto the Hexapod with more stability. 
 
-Figure - Ultrasonic Sensor Case Version 2: 
+#### Figure 5 - Ultrasonic Sensor Case Version 2: 
 
 ![ver2](ver2.png)
 
@@ -57,6 +58,7 @@ For my third milestone, I worked on building the remote controller for the Hexap
 
 ### How it Works - Wireless Module 
 
+#### Figure 4 - Wireless Module 
 ![Wireless Module](nRF24L01-Pinout.png)
 
 The wireless modules allow wireless communication between the control board in the Hexapod and the control board in the remote controller. The wireless module contains a tranceiver, which works as both a transmitter and a receiver, and an antenna, which transmits and receives radio waves. The wireless module uses an SPI interface to create a connection between the module and their microcontroller baords. There are 6 SPI pins: the Master Out Slave In (MOSI) pin, the Master In Slave Out (MISO) pin, the serial clock pin (SCK), the chip enable (CE) pin, the chip select not (CSN) pin, and the IRQ pin. The MOSI pin transmits data from the master, the board, to a slave, which is the module in this case. The MISO pin transmits data from the slave, the module, to the master, the board. The SCK pin helps coordinate the timing of the data transfer, and maintains a steady frequency in the clock signal. The CE pin is responsible for activating and deactiving the chip (module). This is important when controlling multiple chips on a board and choosing which chip is communicating with the board, and is also useful in reducing power consumption when a chip doesn't need to communicate with the board. The CSN pin is used to turn the communication with the board on and off. The IRQ pin indicates when data has been sent or recieved, triggering the interrupt on the microcontroller. The other two pins are GND - ground, and VCC (3V) - power. 
@@ -125,12 +127,12 @@ The purpose of calibrating the Hexapod is to set its default position when power
 }
 ```
 
-#### Figure - Processing Sketch Calibration Tab
+#### Figure 3 - Processing Sketch Calibration Tab
 
 ![Processing Sketch Calibration Tab](calibration_tab.png)
 
 
-#### Figure  - Calibration Graph
+#### Figure 2 - Calibration Graph
 
 This is the graph the legs of the Hexapod are aligned with, for the default position.
 
@@ -160,7 +162,7 @@ I mainly faced challenges while screwing together different parts, because I had
 My next steps are to work on calibrating my robot and building the controller. 
 
 
- Figure 2 - Schematic of Hexapod 
+ #### Figure 1 - Schematic of Hexapod 
  ![schematic of control board](circuit.svg.svg)
 
 
