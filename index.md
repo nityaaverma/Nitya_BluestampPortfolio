@@ -39,7 +39,7 @@ From there, I looked into the condition for SwitchMode in the UpdateBlockedOrder
     robotAction.SwitchMode();
   }
 ```
-Finally, I found the function SwitchMode() in the FNHRBasic.cpp file, and replaced this code with the code for my ultrasonic sensors: 
+Finally, I found the function SwitchMode() in the FNHRBasic.cpp file, and replaced this code with the code for my ultrasonic sensors: (refer to code section) 
 ```
 void RobotAction::SwitchMode()
 {
