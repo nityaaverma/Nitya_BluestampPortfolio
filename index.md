@@ -14,6 +14,45 @@ For my first modification, I added ultrasonic sensors to my Hexapod, so that it 
 
 Next, I worked on integrating the code for the robot's movement due to ultrasonic sensors with the default code for the robot. This was a lot harder than I expected, because the code of the ultrasonic sensors wouldn't run alongside the default robot code and the ports used for the ultrasonic sensors could not be programmed in the default robot code. So, I had to edit the FNHR library's code and add the code for the ultrasonic sensors into there. In the libary code, whenever the Joystick is pressed down, the robot switches between active mode and sleep mode. I modified this method so that instead of switching modes, it would use the ultrasonic sensor code and go into autopilot mode. After this, I had to make a few more modifications to the code - like replacing the names of the trig and echo pins with their numbers, since I couldn't find any place in the library code for the setup. I also replaced the functions I used for the robot's movement within the ultrasonic sensor code (like CrawlForward, CrawlBackward, TurnRight, and SleepMode) with their actual definitions, because I kept getting a compilation error that these methods weren't defined. I also wrote in the pin modes in the method itself. 
 
+I wanted to edit the function robot.Update(), in FNHR.cpp: 
+```
+void FNHR::Update()
+{
+  if (communication.commFunction){
+   communication.UpdateOrder();
+  }
+}
+```
+To do this I, looked into the UpdateOrder() function, in FNHRComm.cpp: 
+```
+void Communication::UpdateOrder()
+{
+  UpdateBlockedOrder();
+  UpdateAutoSleep(); 
+}
+```
+From there, I looked into the condition for SwitchMode in the UpdateBlockedOrder() function in FNHRComm.cpp: 
+```
+ else if (blockedOrder == Orders::requestSwitchMode)
+  {
+    SaveRobotBootState(Robot::State::Boot);
+    robotAction.SwitchMode();
+  }
+```
+Finally, I found the function SwitchMode() in the FNHRBasic.cpp file, and replaced this code with the code for my ultrasonic sensors: 
+```
+void RobotAction::SwitchMode()
+{
+   ActionState();
+    if (mode == Mode::Active) {
+	SleepMode();
+    }
+   else {
+     ActiveMode();
+   }
+}
+```
+
 ### How it Works - HC-SR04 Ultrasonic Sensor
 
 #### Figure 7 - Ultrasonic Sensor
@@ -86,46 +125,7 @@ When I first tried uploading the example sketch into the remote, I kept getting 
 Next, I worked on calibrating and controlling the movement of my Hexapod through the Processing App. To calibrate my robot, I had to connect it to the processing app to put it into calibration mode, and then use the Processing App to individually move each leg of the Hexapod to match its position on the calibration graph. Now that I have calibrated the robot, everytime I connect it to power, it will automatically go into its default position. Once I calibrated the Hexapod, I could control its movement through the Processing App. All the code for the Hexapod's movement came from the original example sketch I uploaded into the Hexapod. I can also wirelessly connect the Hexapod to the Processing App, because of the WLAN module, which creates a Wi-Fi I can connect my computer to. Once connected to the Wi-Fi, the Processing App can wirelessly connect to the Hexapod, so I can control its movement and give it basic movement commands.  
 
 ### How it Works - Calibration 
-The purpose of calibrating the Hexapod is to set its default position when power is turned on. When the calibration is confirmed in the Processing App, the data is stored in the robot. The code below is a snippet of the code from the Processing App library that creates the Processing Sketch that can be used to control the Hexapod when connected. 
-
-```
- // tab Calibration
-    // move leg
-    case(402): //checks if the id value matches 402 
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0); // moves leg 1 mm in the positive  y dimension 
-    break;  //stops running code for this case
-    case(403):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0); //moves leg 1 mm in the negative y dimension 
-    break;
-    case(404):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), dL, 0, 0);  //moves leg 1 mm in the positive x dimension
-    break;
-    case(405):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), -dL, 0, 0); //moves leg 1mm in the negative x dimension
-    break;
-    case(406):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, dL); //moves leg 1 mm in the positive z dimension
-    break;
-    case(407):
-    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, -dL); //moves leg 1 mm in the negative z dimension
-    break;
-    // calibrate
-    case(408):
-    controlRobot.Calibrate();
-    break;
-    case(409):
-    controlRobot.CalibrateState();
-    cp5.getController("confirm").unlock();
-    cp5.getController("confirm").setColorLabel(255);
-    break;
-    case(410):
-    controlRobot.CalibrateVerify();
-    cp5.getController("confirm").lock();
-    cp5.getController("confirm").setColorLabel(160);
-    break;
-  }
-}
-```
+The purpose of calibrating the Hexapod is to set its default position when power is turned on. When the calibration is confirmed in the Processing App, the data is stored in the robot. The code below is a snippet of the code from the Processing App library that creates the Processing Sketch that can be used to control the Hexapod when connected. (refer to code section for calibration tab code)
 
 #### Figure 3 - Processing Sketch Calibration Tab
 
@@ -368,7 +368,7 @@ void RobotAction::SwitchMode()
 }
 ```
 
-### Default Robot Code
+## Default Robot Code
 
 The only change I made here was the library included. I had to make sure this sketch was in the folder as the modified libary source code files for the changes to actually go through. I had to copy the path of the FNHR source file and replace the previous library name with it. 
 
@@ -618,6 +618,47 @@ void loop() {
   }
 }
 ```
+
+## Calibration Tab Code 
+```
+ // tab Calibration
+    // move leg
+    case(402): //checks if the id value matches 402 
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, dL, 0); // moves leg 1 mm in the positive  y dimension 
+    break;  //stops running code for this case
+    case(403):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, -dL, 0); //moves leg 1 mm in the negative y dimension 
+    break;
+    case(404):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), dL, 0, 0);  //moves leg 1 mm in the positive x dimension
+    break;
+    case(405):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), -dL, 0, 0); //moves leg 1mm in the negative x dimension
+    break;
+    case(406):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, dL); //moves leg 1 mm in the positive z dimension
+    break;
+    case(407):
+    controlRobot.MoveLeg((int)(cp5.getGroup("radioButton2").getValue()), 0, 0, -dL); //moves leg 1 mm in the negative z dimension
+    break;
+    // calibrate
+    case(408):
+    controlRobot.Calibrate();
+    break;
+    case(409):
+    controlRobot.CalibrateState();
+    cp5.getController("confirm").unlock();
+    cp5.getController("confirm").setColorLabel(255);
+    break;
+    case(410):
+    controlRobot.CalibrateVerify();
+    cp5.getController("confirm").lock();
+    cp5.getController("confirm").setColorLabel(160);
+    break;
+  }
+}
+```
+
 
 <!--- # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
