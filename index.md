@@ -9,6 +9,8 @@ Hexapod
 
 # Modification Milestone 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r4ZozKEEEOs?si=4onZYC_DilrDG2_W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Description
 For my first modification, I added ultrasonic sensors to my Hexapod, so that it could walk by itself and navigate through obstacles in front of it. I added two ultrasonic sensors to the front and back of my Hexapod. When the Hexapod senses that the distance to an object from the front of it is less than a threshold distance and the distane to an object from the back of it is greater than the threshold distance, it moves forward. When it senses the opposite, it moves backward. When both the front and back are too close to an object, the Hexapod turns right until it senses an opening to move in either the front or back direction. If it moves 180 degrees and neither the front nor the back have an opening, the Hexapod goes into sleep mode until it senses it has space to move. When both the back and the front is clear, the Hexapod moves forward. This is all written in my code. 
 
