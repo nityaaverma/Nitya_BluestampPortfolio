@@ -175,7 +175,8 @@ I mainly faced challenges while screwing together different parts, because I had
 My next steps are to work on calibrating my robot and building the controller. 
 
 
- #### Figure 1 - Schematic of Hexapod 
+ ### Figure 1 - Schematic of Hexapod 
+ 
  <img width="663.636" height="619.545" alt="image" src="https://github.com/user-attachments/assets/0b68fd55-7a57-45e3-afe4-19eac7e17e4a" />
 
 
