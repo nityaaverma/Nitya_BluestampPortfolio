@@ -11,7 +11,7 @@ Hexapod
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r4ZozKEEEOs?si=4onZYC_DilrDG2_W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<p align="center"><img width="481.5" height="647" alt="image" src="https://github.com/user-attachments/assets/3f843ef6-21c8-422a-8adb-f1558a50eef1" />
+<img width="481.5" height="647" alt="image" src="https://github.com/user-attachments/assets/3f843ef6-21c8-422a-8adb-f1558a50eef1" />
 
 
 
@@ -63,7 +63,7 @@ void RobotAction::SwitchMode()
 ### How it Works - HC-SR04 Ultrasonic Sensor
 
 #### Figure 7 - Ultrasonic Sensor
-<p align="center"><img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/f355c39b-f2f7-483d-8e52-b34b501a67ec" />
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/f355c39b-f2f7-483d-8e52-b34b501a67ec" />
 
 
 Ultrasonic sensors consist of a trasnmitter, a receiver, and a transducer. It has four pins, VCC, GND, Trig, and Echo. The transmitter on the ultrasonic sensor transmits ultrasonic waves that hit the nearest object and bounce back. When a short, high pulse is sent to the trig pin, the sensor's trasmitter sends out ultrasonic waves, that hit the nearest object and bounce back to the sensor's receiver. When the waves hit the sensor's receiver, the echo pin its' pulse changes from high to low. By using the pulseIn function, we can calculate how long the echo pin's pulse was high. By using the formula distance = speed x time, we can determine the distance from the object by inputing the time the echo pin's pulse was high and the speed of sound (ultrasonic waves are sound waves). This is distance to the object and back, so finally, we divide this distance by 2. 
@@ -74,7 +74,7 @@ To mount the sensors, I used CAD to make a small box with two holes, for the big
 
 #### Figure 6 - Ultrasonic Sensor Case Version 1: 
 
-<p align="center"><img width="620.5" height="426" alt="image" src="https://github.com/user-attachments/assets/6a516b86-448e-44af-9019-8b1912f66b91" />
+<img width="620.5" height="426" alt="image" src="https://github.com/user-attachments/assets/6a516b86-448e-44af-9019-8b1912f66b91" />
 
 
 ## Challenges
@@ -82,7 +82,7 @@ After my first model of the case was printed, I made some changes to the design 
 
 #### Figure 5 - Ultrasonic Sensor Case Version 2: 
 
-<p align="center"><img width="567.27" height="412.72" alt="image" src="https://github.com/user-attachments/assets/7ff91ea1-8e75-4aa7-b5c4-c548f7922514" />
+<img width="567.27" height="412.72" alt="image" src="https://github.com/user-attachments/assets/7ff91ea1-8e75-4aa7-b5c4-c548f7922514" />
 
 
 I also faced challenges while coding the ultrasonic sensors. At first, a lot of the ultrasonic sensor readings would randomly print 0.00, and the speed of the readings also arbitrarily changed to really fast or really slow. This messed with the Hexapod's movement, because sometimes it would move really fast, or just stop moving. With the help of an instructor, I tried many different fixes for this like making a counter for the number of commands sent to the Hexapod and only executing them if they were under a threshold, trying to average every 10 values measured by the ultrasonic sensors, only accepting distances that were not equal to 0, and only lettting the Hexapod accept the command if the time since the last command is more than 2.5 seconds. Eventually, setting the time constraint and only accepting distances not equal to 0 worked, and the Hexapod was able to move consistently and accurately. 
@@ -139,7 +139,7 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 #### Figure 3 - Processing Sketch Calibration Tab
 
-<p align="center"><img width="501" height="393.5" alt="image" src="https://github.com/user-attachments/assets/08728d8a-6d42-4e25-be79-52e7ed299ec6" />
+<img width="501" height="393.5" alt="image" src="https://github.com/user-attachments/assets/08728d8a-6d42-4e25-be79-52e7ed299ec6" />
 
 
 
@@ -147,7 +147,7 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 This is the graph the legs of the Hexapod are aligned with, for the default position.
 
-<p align="center"><img width="492.25" height="343.5" alt="image" src="https://github.com/user-attachments/assets/9fea2656-2ce0-4c4a-8cd7-63b7d8dcaa7c" />
+<img width="492.25" height="343.5" alt="image" src="https://github.com/user-attachments/assets/9fea2656-2ce0-4c4a-8cd7-63b7d8dcaa7c" />
 
 
 ## Challenges 
@@ -175,7 +175,7 @@ My next steps are to work on calibrating my robot and building the controller.
 
 
  #### Figure 1 - Schematic of Hexapod 
- <p align="center"><img width="663.636" height="619.545" alt="image" src="https://github.com/user-attachments/assets/0b68fd55-7a57-45e3-afe4-19eac7e17e4a" />
+ <img width="663.636" height="619.545" alt="image" src="https://github.com/user-attachments/assets/0b68fd55-7a57-45e3-afe4-19eac7e17e4a" />
 
 
 
