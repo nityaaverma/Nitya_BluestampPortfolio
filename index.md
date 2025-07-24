@@ -61,7 +61,8 @@ void RobotAction::SwitchMode()
 ### How it Works - HC-SR04 Ultrasonic Sensor
 
 #### Figure 7 - Ultrasonic Sensor
-![sensor](sensorr.jpg)
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/f355c39b-f2f7-483d-8e52-b34b501a67ec" />
+
 
 Ultrasonic sensors consist of a trasnmitter, a receiver, and a transducer. It has four pins, VCC, GND, Trig, and Echo. The transmitter on the ultrasonic sensor transmits ultrasonic waves that hit the nearest object and bounce back. When a short, high pulse is sent to the trig pin, the sensor's trasmitter sends out ultrasonic waves, that hit the nearest object and bounce back to the sensor's receiver. When the waves hit the sensor's receiver, the echo pin its' pulse changes from high to low. By using the pulseIn function, we can calculate how long the echo pin's pulse was high. By using the formula distance = speed x time, we can determine the distance from the object by inputing the time the echo pin's pulse was high and the speed of sound (ultrasonic waves are sound waves). This is distance to the object and back, so finally, we divide this distance by 2. 
 
