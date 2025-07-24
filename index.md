@@ -145,7 +145,7 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 This is the graph the legs of the Hexapod are aligned with, for the default position.
 
-<img width="984.5" height="687" alt="image" src="https://github.com/user-attachments/assets/9fea2656-2ce0-4c4a-8cd7-63b7d8dcaa7c" />
+<img width="492.25" height="343.5" alt="image" src="https://github.com/user-attachments/assets/9fea2656-2ce0-4c4a-8cd7-63b7d8dcaa7c" />
 
 
 ## Challenges 
