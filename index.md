@@ -80,7 +80,8 @@ After my first model of the case was printed, I made some changes to the design 
 
 #### Figure 5 - Ultrasonic Sensor Case Version 2: 
 
-![ver2](ver2.png)
+<img width="567.27" height="412.72" alt="image" src="https://github.com/user-attachments/assets/7ff91ea1-8e75-4aa7-b5c4-c548f7922514" />
+
 
 I also faced challenges while coding the ultrasonic sensors. At first, a lot of the ultrasonic sensor readings would randomly print 0.00, and the speed of the readings also arbitrarily changed to really fast or really slow. This messed with the Hexapod's movement, because sometimes it would move really fast, or just stop moving. With the help of an instructor, I tried many different fixes for this like making a counter for the number of commands sent to the Hexapod and only executing them if they were under a threshold, trying to average every 10 values measured by the ultrasonic sensors, only accepting distances that were not equal to 0, and only lettting the Hexapod accept the command if the time since the last command is more than 2.5 seconds. Eventually, setting the time constraint and only accepting distances not equal to 0 worked, and the Hexapod was able to move consistently and accurately. 
 
