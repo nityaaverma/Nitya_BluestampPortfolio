@@ -1,4 +1,5 @@
-Hexapod
+# Hexapod
+The Hexapod is a six-legged robot that consists of a 18 servos, a custom Arduino Mega Board, two ultrasonic sensors, all of which is screwed together with black acrylic plates. It can travel in various kinds of motion and is also capable of navigating through objects autonomously based on readings from its two ultrasonic sensors. It can be controlled wirelessly with a remote controller or through the Freenove App by connecting to its wi-fi. 
 <!--- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! --->
 
 
