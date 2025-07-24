@@ -137,7 +137,8 @@ The purpose of calibrating the Hexapod is to set its default position when power
 
 #### Figure 3 - Processing Sketch Calibration Tab
 
-![Processing Sketch Calibration Tab](calibration_tab.png)
+<img width="501" height="393.5" alt="image" src="https://github.com/user-attachments/assets/08728d8a-6d42-4e25-be79-52e7ed299ec6" />
+
 
 
 #### Figure 2 - Calibration Graph
