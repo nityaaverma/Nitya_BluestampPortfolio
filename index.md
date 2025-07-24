@@ -72,7 +72,8 @@ To mount the sensors, I used CAD to make a small box with two holes, for the big
 
 #### Figure 6 - Ultrasonic Sensor Case Version 1: 
 
-![ver1](ver1.png)
+<img width="620.5" height="426" alt="image" src="https://github.com/user-attachments/assets/6a516b86-448e-44af-9019-8b1912f66b91" />
+
 
 ## Challenges
 After my first model of the case was printed, I made some changes to the design since the slot at the bottom wasn't enought to fit the case onto the Hexapod and also, the ultrasonic sensors weren't fitting inside the holes I made in the case. To fix this problem, I removed the back of the case, so it would be easier to push the sensor into the holes and I increased the diameter of the circles by 1.5 milimeters. For the slot, I increased its depth by 5 milimeters, so it could fit onto the Hexapod with more stability. 
